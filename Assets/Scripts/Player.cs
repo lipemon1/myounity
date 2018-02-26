@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 
     //Input
     private JoystickInputController _joyInputController;
+    private MasterInput _masterInput;
     private CharacterController _characterController;
 
     #region Unity Calls
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _joyInputController = JoystickInputController.Instance;
+        _masterInput = MasterInput.Instance;
         _characterController = GetComponent<CharacterController>();
     }
 
