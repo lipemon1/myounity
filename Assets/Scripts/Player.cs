@@ -75,8 +75,8 @@ public class Player : MonoBehaviour
     {
         if (_playerCanControl)
         {
-            if (!IsDashing && !IsAiming) HandleMovement(_joyInputController.LeftStick(Index));
-            if (!IsDashing) HandleRotation(_joyInputController.LeftStick(Index));
+            if (!IsDashing && !IsAiming) HandleMovement(_masterInput.LeftStick(Index));
+            if (!IsDashing) HandleRotation(_masterInput.LeftStick(Index));
             if (!IsAiming) HandleDash();
             HandleAim();
         }
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z); //freezing Y position
     }
 
     #endregion
@@ -97,29 +97,30 @@ public class Player : MonoBehaviour
 
     private void HandleRotation(Vector2 stick)
     {
-	if(stick.magnitude > 0.1f)
-        transform.forward = Vector3.Slerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
+        if (stick.magnitude > 0.1f)
+            transform.forward = Vector3.Lerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
+        //transform.forward = Vector3.Slerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
     }
 
     private void HandleAim()
     {
         if(_energyHandler.GetPlayerEnergyAmount() > 0)
         {
-            if (_joyInputController.GetButtonDown(Index, Ds4Button.Square))
+            if (_masterInput.GetButtonDown(Index, Ds4Button.Square))
             {
                 AimDuration = 0;
                 IsAiming = true;
 
                 _energyHandler.ToogleShield(true);
             }
-            if (_joyInputController.GetButton(Index, Ds4Button.Square))
+            if (_masterInput.GetButton(Index, Ds4Button.Square))
             {
                 AimDuration += Time.deltaTime;
                 Aim.SetPositions(new[] { Vector3.zero, new Vector3(0, 0, AimDuration) });
 
                 _energyHandler.SetHoldingShot(true, AimDuration);
             }
-            else if (_joyInputController.GetButtonUp(Index, Ds4Button.Square))
+            else if (_masterInput.GetButtonUp(Index, Ds4Button.Square))
             {
                 Aim.SetPositions(new[] { Vector3.zero, Vector3.zero });
                 IsAiming = false;
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
 
     private void HandleDash()
     {
-        if (_joyInputController.GetButtonDown(Index, Ds4Button.Cross) && _canDash)
+        if (_masterInput.GetButtonDown(Index, Ds4Button.Cross) && _canDash)
         {
             StopAllCoroutines();
             StartCoroutine(DashCo());

@@ -35,19 +35,29 @@ public class KeyboardInputController : MonoBehaviour {
 
     public Vector2 LeftStick(PlayerIndex playerIndex)
     {
-        return new Vector2(Input.GetAxis("HorizontalKeyboard" + ((int)playerIndex).ToString()), Input.GetAxis("VerticalKeyboard" + ((int)playerIndex).ToString()));
+        int indexToUse = GetCorrectIndex(playerIndex);
+
+        Debug.Log("H: " + Input.GetAxis("HorizontalKeyboard" + indexToUse.ToString()));
+        Debug.Log("V: " + Input.GetAxis("VerticalKeyboard" + indexToUse.ToString()));
+
+        if (playerIndex == PlayerIndex.Three || playerIndex == PlayerIndex.Four)
+            return new Vector2(Input.GetAxis("HorizontalKeyboard" + indexToUse.ToString()), Input.GetAxis("VerticalKeyboard" + indexToUse.ToString()));
+        else
+            return Vector2.zero;
     }
 
     public bool GetButton(PlayerIndex playerIndex, Ds4Button btn)
     {
+        int indexToUse = GetCorrectIndex(playerIndex);
+
         switch (btn)
         {
             case Ds4Button.Cross:
-                return (Input.GetButton("SkillOne" + ((int)playerIndex).ToString()));
+                return (Input.GetButton("SkillOne" + indexToUse.ToString()));
             case Ds4Button.Circle:
-                return (Input.GetButton("SkillTwo" + ((int)playerIndex).ToString()));
+                return (Input.GetButton("SkillTwo" + indexToUse.ToString()));
             case Ds4Button.Square:
-                return (Input.GetButton("Shoot" + ((int)playerIndex).ToString()));
+                return (Input.GetButton("Shoot" + indexToUse.ToString()));
 
             default:
                 break;
@@ -58,14 +68,19 @@ public class KeyboardInputController : MonoBehaviour {
 
     public bool GetButtonDown(PlayerIndex playerIndex, Ds4Button btn)
     {
+        if (playerIndex == PlayerIndex.One || playerIndex == PlayerIndex.Two)
+            return false;
+
+        int indexToUse = GetCorrectIndex(playerIndex);
+
         switch (btn)
         {
             case Ds4Button.Cross:
-                return (Input.GetButtonDown("SkillOne" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonDown("SkillOne" + indexToUse.ToString()));
             case Ds4Button.Circle:
-                return (Input.GetButtonDown("SkillTwo" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonDown("SkillTwo" + indexToUse.ToString()));
             case Ds4Button.Square:
-                return (Input.GetButtonDown("Shoot" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonDown("Shoot" + indexToUse.ToString()));
 
             default:
                 break;
@@ -75,19 +90,26 @@ public class KeyboardInputController : MonoBehaviour {
 
     public bool GetButtonUp(PlayerIndex playerIndex, Ds4Button btn)
     {
+        int indexToUse = GetCorrectIndex(playerIndex);
+
         switch (btn)
         {
             case Ds4Button.Cross:
-                return (Input.GetButtonUp("SkillOne" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonUp("SkillOne" + indexToUse.ToString()));
             case Ds4Button.Circle:
-                return (Input.GetButtonUp("SkillTwo" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonUp("SkillTwo" + indexToUse.ToString()));
             case Ds4Button.Square:
-                return (Input.GetButtonUp("Shoot" + ((int)playerIndex).ToString()));
+                return (Input.GetButtonUp("Shoot" + indexToUse.ToString()));
 
             default:
                 break;
         }
         return false;
+    }
+
+    private int GetCorrectIndex(PlayerIndex playerIndex)
+    {
+        return ((int)playerIndex + 1);
     }
 
     #endregion
