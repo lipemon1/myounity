@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _playerCanControl;
 
     [Header("Class Base")]
-    public PlayerClassCreatorScriptable ClassInfo;
+    public PlayerClassCreatorScriptable Class;
 
     [Header("Rendering Settings")]
     public Renderer[] ColoredRenderers;
@@ -88,14 +88,14 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(Vector2 stick)
     {
-        _characterController.Move(new Vector3(stick.x, 0, stick.y) * ClassInfo.BaseInfo.MoveSpeed * Time.deltaTime);
+        _characterController.Move(new Vector3(stick.x, 0, stick.y) * Class.BaseInfo.MoveSpeed * Time.deltaTime);
         _playerAnimController.UpdateMoveAnimations(stick.magnitude);
     }
 
     private void HandleRotation(Vector2 stick)
     {
         if (stick.magnitude > 0.1f)
-            transform.forward = Vector3.Lerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * ClassInfo.BaseInfo.RotateSlerpSpeed);
+            transform.forward = Vector3.Lerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * Class.BaseInfo.RotateSlerpSpeed);
         //transform.forward = Vector3.Slerp(transform.forward, new Vector3(stick.x, 0, stick.y), Time.deltaTime * RotSlerpSpeed);
     }
 

@@ -12,6 +12,8 @@ public class PlayerInfo
     public Transform PositionToSpawn;
     public Player Instance;
     public EnergyHandler PlayerEnergy;
+    public HealthController HealthController;
+    public PlayerClassCreatorScriptable Class;
     public Blinker Blinker;
     public PlayerAnimController PlayerAnimationsController;
     public int kills;

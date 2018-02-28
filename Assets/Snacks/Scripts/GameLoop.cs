@@ -200,8 +200,13 @@ public class GameLoop : MonoBehaviour
             {
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation)
                     .GetComponent<Player>();
+
+                Global.Player[i].HealthController = Global.Player[i].Instance.gameObject.GetComponent<HealthController>();
+                Global.Player[i].Class = Global.Player[i].Instance.Class;
+
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
                 Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(INITIAL_ENERGY);
+
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();

@@ -891,7 +891,7 @@ Prefab:
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.6
       objectReference: {fileID: 0}
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -901,7 +901,7 @@ Prefab:
     - target: {fileID: 224208562675537510, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.2
       objectReference: {fileID: 0}
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -921,7 +921,7 @@ Prefab:
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.599976
       objectReference: {fileID: 0}
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -931,7 +931,7 @@ Prefab:
     - target: {fileID: 224990943518249962, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.19995
       objectReference: {fileID: 0}
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -951,7 +951,7 @@ Prefab:
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -961,7 +961,7 @@ Prefab:
     - target: {fileID: 224064652544167300, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.20001
       objectReference: {fileID: 0}
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -981,7 +981,7 @@ Prefab:
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -38.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -991,7 +991,7 @@ Prefab:
     - target: {fileID: 224712316395477452, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 69.20001
       objectReference: {fileID: 0}
     - target: {fileID: 224742171006390872, guid: 921318e59cfe09a4ca7b86094fa04645,
         type: 2}
@@ -1862,7 +1862,7 @@ MonoBehaviour:
   - {fileID: 1826678024}
   - {fileID: 647168623}
   _startMessage: AE AHOU!
-  _finalMessage: 
+  _finalMessage: Terminando...
   _currentDeathTickets: 0
   _deathTicketsForMatch: 20
   _playersScore: []
