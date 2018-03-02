@@ -29,9 +29,6 @@ public class GameLoop : MonoBehaviour
     }
 
     public static GameLoop Instance;
-
-    public const int MAX_ENERGY = 4;
-    public const int INITIAL_ENERGY = 2;
     
     [Header("Game Configurations")]
     [SerializeField] public bool RespawnWithEnergy = false;
@@ -205,7 +202,9 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].Class = Global.Player[i].Instance.Class;
 
                 Global.Player[i].PlayerEnergy = Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>();
-                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(INITIAL_ENERGY);
+                Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveHealth(Global.Player[i].Class.BaseInfo.Life);
+
+                Global.Player[i].FireController = Global.Player[i].Instance.gameObject.GetComponent<FireController>();
 
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Instance.Index = (PlayerIndex) i;

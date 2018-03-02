@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [Header("Cur Status")]
+    [SerializeField] private int _curHealth;
+
+	public int GetCurHealth() { return _curHealth; }
+
+    public void SetCurHealth(int amountToAdd)
+    {
+        _curHealth += amountToAdd;
+
+        if (_curHealth < 0)
+            _curHealth = 0;
+
+        OnHealthChange();
+    }
+
+    private void OnHealthChange()
+    {
+        //TODO implement call to the UI
+    }
 }

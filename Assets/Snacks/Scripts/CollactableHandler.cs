@@ -67,7 +67,7 @@ public class CollactableHandler : MonoBehaviour
         {
             BulletBehaviour bulletCB = other.GetComponent<BulletBehaviour>();
 
-            if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < GameLoop.MAX_ENERGY)
+            if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < Global.Player[(int)_playerController.Index].HealthController.GetCurHealth())
                 CollectEnergy(bulletCB);
             else if (bulletCB.CanBePicked() == false)
                 KillPlayer();
@@ -82,7 +82,7 @@ public class CollactableHandler : MonoBehaviour
     private void CollectEnergy(BulletBehaviour bulletCB)
     {
         Debug.Log("EnergyCollected");
-        _energyHandler.RecieveSomeEnergy(bulletCB.GetEnergyAmount());
+        _energyHandler.RecieveHealth(bulletCB.GetEnergyAmount());
         Destroy(bulletCB.gameObject);
         SoundManager.Instance.PlaySomeAudio("Pick");
     }

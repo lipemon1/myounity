@@ -3928,7 +3928,7 @@ MonoBehaviour:
   _canRecieveDamage: 0
   _timeForRespawn: 3
   _energyTag: EnergyBullet
-  _playerAnimController: {fileID: 0}
+  _playerAnimController: {fileID: 114943778708322782}
   _deathParticle: {fileID: 198728133758858480}
   _respawnParticle: {fileID: 198895333559322628}
   _acessories: {fileID: 114770242670706796}
@@ -4000,7 +4000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 0
   _playerCanControl: 0
-  ClassInfo: {fileID: 11400000, guid: 33971dd040b00d143a57dcd9dfc6e97c, type: 2}
+  Class: {fileID: 11400000, guid: 33971dd040b00d143a57dcd9dfc6e97c, type: 2}
   ColoredRenderers:
   - {fileID: 137027235853705906}
   DashAnimationCurve:

@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [Header("Debug")]
+    [SerializeField] private bool _canShoot;
+
+    [Header("Fire Stats")]
+    [SerializeField] private float _shooFireRate;
+
+    public void Firing()
+    {
+        _canShoot = false;
+        Invoke("EnableShoot", _shooFireRate);
+    }
+
+    public void EnableShoot()
+    {
+        _canShoot = true;
+    }
+
+    public bool GetCanShoot() { return _canShoot; }
 }

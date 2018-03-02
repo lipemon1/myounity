@@ -12,6 +12,7 @@ public class PlayerInfo
     public Transform PositionToSpawn;
     public Player Instance;
     public EnergyHandler PlayerEnergy;
+    public FireController FireController;
     public HealthController HealthController;
     public PlayerClassCreatorScriptable Class;
     public Blinker Blinker;
@@ -69,7 +70,7 @@ public static class Global {
         PlayerInfo playerToRespawn = GetMyPlayer(playerToRespawnNow);
 
         if(GameLoop.Instance.RespawnWithEnergy)
-            playerToRespawn.Instance.gameObject.GetComponent<EnergyHandler>().RecieveSomeEnergy(GameLoop.INITIAL_ENERGY);
+            playerToRespawn.PlayerEnergy.RecieveHealth(playerToRespawn.Class.BaseInfo.Life);
 
         playerToRespawn.Instance.gameObject.transform.position = playerToRespawn.PositionToSpawn.position;
         playerToRespawn.Instance.gameObject.transform.rotation = playerToRespawn.PositionToSpawn.rotation;

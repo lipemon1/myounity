@@ -29,9 +29,6 @@ public class EnergyHandler : MonoBehaviour {
     [SerializeField] private float _minBulletDistance = 2.5f;
     [SerializeField] private float _maxBulletDistance = 10f;
 
-    [Header("Player Data")]
-    [SerializeField] private PlayerData _playerData;
-
     [Header("Player Animator")]
     [HideInInspector] private PlayerAnimController _playerAnimController;
 
@@ -66,13 +63,13 @@ public class EnergyHandler : MonoBehaviour {
     {
         if (_canRecieveDamage)
         {
-            if (damageAmount > _playerData.GetEnergyAmount())
+            if (damageAmount > Global.Player[(int)_playerController.Index].HealthController.GetCurHealth())
             {
                 OnDeath(killPlayer);
             }
             else
             {
-                if (_shieldIsOn && damageAmount <= _playerData.GetEnergyAmount())
+                if (_shieldIsOn && damageAmount <= Global.Player[(int)_playerController.Index].HealthController.GetCurHealth())
                 {
                     ToogleShield(false);
                     SoundManager.Instance.PlaySomeAudio("ShieldHit");
@@ -120,23 +117,26 @@ public class EnergyHandler : MonoBehaviour {
     }
 
     /// <summary>
-    /// Recebe uma energia que foi coletada
+    /// Recebe uma certa quantidade de vida
     /// </summary>
     /// <param name="amount"></param>
-    public void RecieveSomeEnergy(int amount)
+    public void RecieveHealth(int amount)
     {
-        _playerData.SetEnergyAmount(amount);
+        Global.Player[(int)_playerController.Index].HealthController.SetCurHealth(amount);
     }
 
     public void TryToShoot()
     {
-        if (CanShoot())
+        if (Global.Player[(int)_playerController.Index].FireController.GetCanShoot())
         {
+            //setting up shoot control
+            Global.Player[(int)_playerController.Index].FireController.Firing();
+
             float force = _bulletShootForce;
             _bulletShootForce = 0f;
             Debug.LogWarning("Shoot with force: " + force.ToString("F2"));
 
-            Shoot(_bulletPrefab, force, _playerData.GetEnergyAmount());
+            Shoot(_bulletPrefab, force, Global.Player[(int)_playerController.Index].HealthController.GetCurHealth());
         }
         else
         {
@@ -149,7 +149,7 @@ public class EnergyHandler : MonoBehaviour {
     private void Shoot(GameObject bulletPrefab, float holdTime, int energyAmount)
     {
         SoundManager.Instance.PlaySomeAudio("Shoot");
-        _playerData.SetEnergyAmount(-energyAmount);
+        Global.Player[(int)_playerController.Index].HealthController.SetCurHealth(-energyAmount);
         GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
 
         bullet.GetComponent<BulletBehaviour>().SetEnergyAmount(energyAmount);
@@ -173,7 +173,7 @@ public class EnergyHandler : MonoBehaviour {
     /// <returns></returns>
     public int GetPlayerEnergyAmount()
     {
-        return _playerData.GetEnergyAmount();
+        return Global.Player[(int)_playerController.Index].HealthController.GetCurHealth();
     }
 
     /// <summary>
@@ -182,7 +182,7 @@ public class EnergyHandler : MonoBehaviour {
     /// <returns></returns>
     private bool CanShoot()
     {
-        return (_playerData.GetEnergyAmount() > 0 && _canShoot);
+        return (Global.Player[(int)_playerController.Index].HealthController.GetCurHealth() > 0 && _canShoot);
     }
 
     public void SetCanRecieveDamage(bool value) { _canRecieveDamage = value; }

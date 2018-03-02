@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e018c9f933cb3274eb6f7fbf4d55aff0, type: 3}
-  m_Name: Brocolis
+  m_Name: BaseClass
   m_EditorClassIdentifier: 
   BaseInfo:
     Life: 100
     MoveSpeed: 10
-    RotateSlerpSpeed: 12
+    RotateSlerpSpeed: 24
     Damage: 30
     AttackSpeed: 1
