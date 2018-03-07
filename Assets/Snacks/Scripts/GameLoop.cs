@@ -194,6 +194,7 @@ public class GameLoop : MonoBehaviour
             {
                 Global.Player[i].Instance = Instantiate(_playerPrefab, _spawnTransforms[i].position, _spawnTransforms[i].rotation)
                     .GetComponent<Player>();
+                Global.Player[i].Instance.Index = (PlayerIndex) i;
 
                 Global.Player[i].HealthController = Global.Player[i].Instance.gameObject.GetComponent<HealthController>();
                 Global.Player[i].Class = Global.Player[i].Instance.Class;
@@ -204,7 +205,6 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].FireController = Global.Player[i].Instance.gameObject.GetComponent<FireController>();
 
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
-                Global.Player[i].Instance.Index = (PlayerIndex) i;
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();
                 Global.Player[i].PlayerAnimationsController = Global.Player[i].Instance.gameObject.GetComponent<PlayerAnimController>();
 

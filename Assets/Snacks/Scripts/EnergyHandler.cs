@@ -140,7 +140,7 @@ public class EnergyHandler : MonoBehaviour {
         }
         else
         {
-            Debug.LogWarning("You tried to shoot but the shoot system is not ready yet.");
+            Debug.LogWarning("You tried to shoot but the shoot system is not ready yet or you can't shoot right now.");
         }
 
         _holdingShot = false;
