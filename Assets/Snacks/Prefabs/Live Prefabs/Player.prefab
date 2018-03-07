@@ -3914,6 +3914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed6b7eb57e6d8744ae7f4756847934f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _curHealth: 0
 --- !u!114 &114034775536842656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4056,8 +4057,6 @@ MonoBehaviour:
   _shootSpawner: {fileID: 4425452484979506}
   _minBulletDistance: 2.5
   _maxBulletDistance: 10
-  _playerData:
-    _energyAmount: 0
 --- !u!114 &114943778708322782
 MonoBehaviour:
   m_ObjectHideFlags: 1

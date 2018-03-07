@@ -37,8 +37,8 @@ public class KeyboardInputController : MonoBehaviour {
     {
         int indexToUse = GetCorrectIndex(playerIndex);
 
-        Debug.Log("H: " + Input.GetAxis("HorizontalKeyboard" + indexToUse.ToString()));
-        Debug.Log("V: " + Input.GetAxis("VerticalKeyboard" + indexToUse.ToString()));
+        //Debug.Log("H: " + Input.GetAxis("HorizontalKeyboard" + indexToUse.ToString()));
+        //Debug.Log("V: " + Input.GetAxis("VerticalKeyboard" + indexToUse.ToString()));
 
         if (playerIndex == PlayerIndex.Three || playerIndex == PlayerIndex.Four)
             return new Vector2(Input.GetAxis("HorizontalKeyboard" + indexToUse.ToString()), Input.GetAxis("VerticalKeyboard" + indexToUse.ToString()));

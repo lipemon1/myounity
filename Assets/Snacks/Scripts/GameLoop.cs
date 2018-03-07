@@ -188,9 +188,6 @@ public class GameLoop : MonoBehaviour
     // This function is used to turn all the tanks back on and reset their positions and properties.
     private void ResetAllPlayers()
     {
-        foreach (var userPlate in NamePlateManager.Instance.UserPlates)
-            userPlate.DisableNamePlate();
-
         for (int i = 0; i < Global.MaxPlayers; i++)
         {
             if (Global.Player[i].exist)
@@ -215,13 +212,6 @@ public class GameLoop : MonoBehaviour
                 {
                     rend.material = _playerMaterials[i];
                 }
-
-                foreach (var userPlate in NamePlateManager.Instance.UserPlates)
-                    if (userPlate.Index == Global.Player[i].Instance.Index)
-                    {
-                        userPlate.Owner = Global.Player[i].Instance;
-                        userPlate.EnableNamePlate();
-                    }
             }
         }
     }
