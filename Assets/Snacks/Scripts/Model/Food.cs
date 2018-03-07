@@ -10,5 +10,6 @@ namespace Model
         public float RotateSlerpSpeed = 12;
         public int Damage = 30;
         public float AttackSpeed = 1;
+        public float FireRate = 1.5f;
     }
 }

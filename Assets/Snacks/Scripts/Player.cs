@@ -101,14 +101,12 @@ public class Player : MonoBehaviour
 
     private void HandleAim()
     {
-        if(_energyHandler.GetPlayerEnergyAmount() > 0)
+        if(Global.Player[(int)Index].FireController.GetCanShoot())
         {
             if (_masterInput.GetButtonDown(Index, Ds4Button.Square))
             {
                 AimDuration = 0;
                 IsAiming = true;
-
-                _energyHandler.ToogleShield(true);
             }
             if (_masterInput.GetButton(Index, Ds4Button.Square))
             {
@@ -116,13 +114,14 @@ public class Player : MonoBehaviour
                 Aim.SetPositions(new[] { Vector3.zero, new Vector3(0, 0, AimDuration) });
 
                 _energyHandler.SetHoldingShot(true, AimDuration);
+                IsAiming = false;
+                _energyHandler.TryToShoot();
             }
             else if (_masterInput.GetButtonUp(Index, Ds4Button.Square))
             {
                 Aim.SetPositions(new[] { Vector3.zero, Vector3.zero });
                 IsAiming = false;
 
-                _energyHandler.ToogleShield(false);
                 _energyHandler.TryToShoot();
                 AimDuration = 0;
             }
@@ -170,6 +169,7 @@ public class Player : MonoBehaviour
     public void EnablePlayerControl()
     {
         _playerCanControl = true;
+        Global.Player[(int)Index].FireController.EnableShoot();
     }
 
     public void DisablePlayerControl()

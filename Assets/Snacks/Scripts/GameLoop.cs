@@ -203,6 +203,7 @@ public class GameLoop : MonoBehaviour
                 Global.Player[i].Instance.gameObject.GetComponent<EnergyHandler>().RecieveHealth(Global.Player[i].Class.BaseInfo.Life);
 
                 Global.Player[i].FireController = Global.Player[i].Instance.gameObject.GetComponent<FireController>();
+                Global.Player[i].FireController.ConfigureFireRate(Global.Player[i].Class.BaseInfo.FireRate);
 
                 Global.Player[i].PositionToSpawn = _spawnTransforms[i];
                 Global.Player[i].Blinker = Global.Player[i].Instance.gameObject.GetComponent<Blinker>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using XInputDotNetPure;
 
 public class BulletBehaviour : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class BulletBehaviour : MonoBehaviour
 
     [Header("Energy Amount")]
     [SerializeField]
-    private int _energyAmount;
+    private int _damageAmount;
     [SerializeField]
     private ParticleSystem ChargeParticle;
 
@@ -121,8 +122,11 @@ public class BulletBehaviour : MonoBehaviour
             CollactableHandler collactableHandler = col.gameObject.GetComponent<CollactableHandler>();
             if (collactableHandler != null)
             {
-                EnergyHandler energyHandler = col.gameObject.GetComponent<EnergyHandler>();
-                energyHandler.TryRecieveDamage(_energyAmount, () => KillPlayer(collactableHandler));
+                if(collactableHandler.gameObject.GetComponent<Player>().Index != (PlayerIndex)_ownerId)
+                {
+                    EnergyHandler energyHandler = col.gameObject.GetComponent<EnergyHandler>();
+                    energyHandler.TryRecieveDamage(_damageAmount, () => KillPlayer(collactableHandler));
+                }
             }
         }
     }
@@ -137,15 +141,17 @@ public class BulletBehaviour : MonoBehaviour
 
     private void BulletStop()
     {
-        _canPickParticle.SetActive(true);
-        _bulletMeshRenderer.material = _shieldMaterial;
-        _deathStarParticle.SetActive(false);
+        Destroy(this.gameObject);
 
-        _moving = false;
-        SetCanBePicked(true);
+        //_canPickParticle.SetActive(true);
+        //_bulletMeshRenderer.material = _shieldMaterial;
+        //_deathStarParticle.SetActive(false);
 
-        if (_energyAmount > 1)
-            SpawnNewBullets(_energyAmount);
+        //_moving = false;
+        //SetCanBePicked(true);
+
+        //if (_energyAmount > 1)
+        //    SpawnNewBullets(_energyAmount);
     }
 
     private void SpawnNewBullets(int energyAmount)
@@ -156,11 +162,11 @@ public class BulletBehaviour : MonoBehaviour
         {
             GameObject newBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, yRot + 360 / (i + 1), 0)));
             BulletBehaviour bulletBehaviour = newBullet.GetComponent<BulletBehaviour>();
-            bulletBehaviour.SetEnergyAmount(1);
+            bulletBehaviour.SetDamageAmount(1);
             bulletBehaviour.Fire(_distanceToChildrenBullets, _ownerId);
             newBullet.transform.localScale = Vector3.one;
         }
-        SetEnergyAmount(1);
+        SetDamageAmount(1);
         Destroy(gameObject); 
     }
 
@@ -178,13 +184,18 @@ public class BulletBehaviour : MonoBehaviour
         //transform.localScale *= 1.5f;
     }
 
-    public int GetEnergyAmount() { return _energyAmount; }
+    public int GetDamageAmount() { return _damageAmount; }
 
-    public void SetEnergyAmount(int amount)
+    public void SetDamageAmount(int amount)
     {
-        _energyAmount = amount;
+        _damageAmount = amount;
 #pragma warning disable CS0618 // O tipo ou membro é obsoleto
         ChargeParticle.startSize = amount / 5f;
 #pragma warning restore CS0618 // O tipo ou membro é obsoleto
+    }
+
+    public int GetOwnerId()
+    {
+        return _ownerId;
     }
 }

@@ -19,7 +19,7 @@ public class CollactableHandler : MonoBehaviour
 
     [Header("Energy Tag")]
     [SerializeField]
-    private string _energyTag = "EnergyBullet";
+    private string _bulletTag = "EnergyBullet";
 
     [Header("EnergyHandler")]
     [HideInInspector]
@@ -63,13 +63,13 @@ public class CollactableHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(_energyTag))
+        if (other.gameObject.CompareTag(_bulletTag))
         {
             BulletBehaviour bulletCB = other.GetComponent<BulletBehaviour>();
 
             if (bulletCB.CanBePicked() && _energyHandler.GetPlayerEnergyAmount() < Global.Player[(int)_playerController.Index].HealthController.GetCurHealth())
                 CollectEnergy(bulletCB);
-            else if (bulletCB.CanBePicked() == false)
+            else if (bulletCB.CanBePicked() == false && bulletCB.GetOwnerId() != (int)_playerController.Index)
                 KillPlayer();
         }
 
@@ -82,7 +82,7 @@ public class CollactableHandler : MonoBehaviour
     private void CollectEnergy(BulletBehaviour bulletCB)
     {
         Debug.Log("EnergyCollected");
-        _energyHandler.RecieveHealth(bulletCB.GetEnergyAmount());
+        _energyHandler.RecieveHealth(bulletCB.GetDamageAmount());
         Destroy(bulletCB.gameObject);
         SoundManager.Instance.PlaySomeAudio("Pick");
     }

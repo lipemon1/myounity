@@ -132,11 +132,12 @@ public class EnergyHandler : MonoBehaviour {
             //setting up shoot control
             Global.Player[(int)_playerController.Index].FireController.Firing();
 
-            float force = _bulletShootForce;
+            //float force = _bulletShootForce;
+            float force = _maxForceToShoot;
             _bulletShootForce = 0f;
             Debug.LogWarning("Shoot with force: " + force.ToString("F2"));
 
-            Shoot(_bulletPrefab, force, Global.Player[(int)_playerController.Index].HealthController.GetCurHealth());
+            Shoot(_bulletPrefab, force, Global.Player[(int)_playerController.Index].Instance.Class.BaseInfo.Damage);
         }
         else
         {
@@ -146,13 +147,12 @@ public class EnergyHandler : MonoBehaviour {
         _holdingShot = false;
     }
 
-    private void Shoot(GameObject bulletPrefab, float holdTime, int energyAmount)
+    private void Shoot(GameObject bulletPrefab, float holdTime, int bulletDamage)
     {
         SoundManager.Instance.PlaySomeAudio("Shoot");
-        Global.Player[(int)_playerController.Index].HealthController.SetCurHealth(-energyAmount);
         GameObject bullet = Instantiate(bulletPrefab, _shootSpawner.transform.position, transform.rotation);
 
-        bullet.GetComponent<BulletBehaviour>().SetEnergyAmount(energyAmount);
+        bullet.GetComponent<BulletBehaviour>().SetDamageAmount(bulletDamage);
 
         _bulletDistance = Mathf.Lerp(_minBulletDistance, _maxBulletDistance, Mathf.InverseLerp(0, _maxForceToShoot, holdTime));
 

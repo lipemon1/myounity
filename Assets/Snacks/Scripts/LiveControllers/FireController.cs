@@ -21,5 +21,10 @@ public class FireController : MonoBehaviour {
         _canShoot = true;
     }
 
+    public void ConfigureFireRate(float newValue)
+    {
+        _shooFireRate = newValue;
+    }
+
     public bool GetCanShoot() { return _canShoot; }
 }
