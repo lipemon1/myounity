@@ -115,15 +115,15 @@ public class PlayerSelectionBehaviour : MonoBehaviour
 
     private bool AnyKeyDown(int _index)
     {
-        return JoystickInputController.Instance.GetAnyKeyDown((PlayerIndex)_index);
+        return MasterInput.Instance.GetAnyKeyOrButtonDown((PlayerIndex)_index);
     }
     private bool AnyKey(int _index)
     {
-        return JoystickInputController.Instance.GetAnyKey((PlayerIndex)_index);
+        return MasterInput.Instance.GetAnyKeyOrButton((PlayerIndex)_index);
     }
     private bool AnyKeyUp(int _index)
     {
-        return JoystickInputController.Instance.GetAnyKeyUp((PlayerIndex)_index);
+        return MasterInput.Instance.GetAnyKeyOrButtonUp((PlayerIndex)_index);
     }
 
 

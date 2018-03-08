@@ -1017,6 +1017,7 @@ GameObject:
   - component: {fileID: 114943778708322782}
   - component: {fileID: 195694833876618150}
   - component: {fileID: 114031054975425986}
+  - component: {fileID: 114999694017365492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3928,7 +3929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canRecieveDamage: 0
   _timeForRespawn: 3
-  _energyTag: EnergyBullet
+  _bulletTag: EnergyBullet
   _playerAnimController: {fileID: 114943778708322782}
   _deathParticle: {fileID: 198728133758858480}
   _respawnParticle: {fileID: 198895333559322628}
@@ -4068,6 +4069,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07e1acff177d504faf8d6e2b391aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114999694017365492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638863029441292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbb9454dc214db4796618e671e154f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canShoot: 0
+  _shooFireRate: 0
 --- !u!120 &120833079959657552
 LineRenderer:
   m_ObjectHideFlags: 1

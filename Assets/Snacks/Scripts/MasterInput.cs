@@ -75,5 +75,61 @@ public class MasterInput : MonoBehaviour
             return _joystickInstance.GetButtonUp(playerIndex, btn) || _keyboardInstance.GetButtonUp(playerIndex, btn);
     }
 
+    #region Any Buttons or Keys
+    public bool GetAnyKeyOrButtonDown(PlayerIndex playerIndex)
+    {
+        if (playerIndex == PlayerIndex.Two || playerIndex == PlayerIndex.One)
+        {
+            if (_joystickInstance)
+            {
+                Debug.Log("[DOWN] - Já existe instancia");
+                return _joystickInstance.GetAnyKeyDown(playerIndex);
+            }
+            else
+            {
+                Debug.Log("[DOWN] - Ainda não há instancia do joystick");
+                return false;
+            }
+        }
+        else
+        {
+            return _joystickInstance.GetAnyKeyDown(playerIndex) || _keyboardInstance.GetAnyButtonDown(playerIndex);
+        }
+    }
+
+    public bool GetAnyKeyOrButton(PlayerIndex playerIndex)
+    {
+        if (playerIndex == PlayerIndex.Two || playerIndex == PlayerIndex.One)
+        {
+            return _joystickInstance.GetAnyKey(playerIndex);
+        }
+        else
+        {
+            return _joystickInstance.GetAnyKey(playerIndex) || _keyboardInstance.GetAnyButton(playerIndex);
+        }
+    }
+
+    public bool GetAnyKeyOrButtonUp(PlayerIndex playerIndex)
+    {
+        if (playerIndex == PlayerIndex.Two || playerIndex == PlayerIndex.One)
+        {
+            if (_joystickInstance)
+            {
+                Debug.Log("[DOWN] - Já existe instancia");
+                return _joystickInstance.GetAnyKeyUp(playerIndex);
+            }
+            else
+            {
+                Debug.Log("[DOWN] - Ainda não há instancia do joystick");
+                return false;
+            }
+        }
+        else
+        {
+            return _joystickInstance.GetAnyKeyUp(playerIndex) || _keyboardInstance.GetAnyButtonUp(playerIndex);
+        }
+    }
+    #endregion
+
     #endregion
 }

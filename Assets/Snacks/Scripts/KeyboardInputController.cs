@@ -107,6 +107,27 @@ public class KeyboardInputController : MonoBehaviour {
         return false;
     }
 
+    public bool GetAnyButtonDown(PlayerIndex playerIndex)
+    {
+        return GetButtonDown(playerIndex, Ds4Button.Cross) ||
+               GetButtonDown(playerIndex, Ds4Button.Circle) ||
+               GetButtonDown(playerIndex, Ds4Button.Square);
+    }
+
+    public bool GetAnyButton(PlayerIndex playerIndex)
+    {
+        return GetButton(playerIndex, Ds4Button.Cross) ||
+               GetButton(playerIndex, Ds4Button.Circle) ||
+               GetButton(playerIndex, Ds4Button.Square);
+    }
+
+    public bool GetAnyButtonUp(PlayerIndex playerIndex)
+    {
+        return GetButtonUp(playerIndex, Ds4Button.Cross) ||
+               GetButtonUp(playerIndex, Ds4Button.Circle) ||
+               GetButtonUp(playerIndex, Ds4Button.Square);
+    }
+
     private int GetCorrectIndex(PlayerIndex playerIndex)
     {
         return ((int)playerIndex + 1);
